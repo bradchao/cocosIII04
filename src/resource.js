@@ -7,6 +7,10 @@ var res = {
     man_png : "res/man.png",
     ball_png : "res/ball.png",
     man_plist : "res/man.plist",
+    s1_plist : "res/s1.plist",
+    s1_png : "res/s1.png",
+    s1b_png : "res/s1_0025.png",
+    btn_png : "res/button.png",
 };
 
 var g_resources = [];
