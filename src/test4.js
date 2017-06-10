@@ -57,8 +57,10 @@ var Test4Layer = cc.Layer.extend({
                 var a2 = cc.moveBy(0.5, cc.p(0,size.height/2));
                 var a3 = cc.moveBy(0.5, cc.p(-size.width/2,0));
                 var a4 = cc.moveBy(0.5, cc.p(0,-size.height/2));
+                var c1 = new cc.CallFunc(this.cb1, this);
                 var as = [];
-                as.push(a1); as.push(a2);as.push(a3);as.push(a4);
+                as.push(a1); as.push(c1); as.push(a2);  as.push(c1);
+                as.push(a3); as.push(c1);as.push(a4); as.push(c1);
                 var seq = new cc.Sequence(as);
                 this.sprite.runAction(seq);
 
@@ -71,6 +73,10 @@ var Test4Layer = cc.Layer.extend({
         this.addChild(menu);
 
         return true;
+    },
+
+    cb1 : function () {
+        cc.log("here");
     }
 });
 
