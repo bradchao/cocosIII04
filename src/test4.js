@@ -32,8 +32,41 @@ var Test4Layer = cc.Layer.extend({
         act2.x = 160;
         act2.y = 600;
 
+        var act3 = new cc.MenuItemImage(
+            res.btn_png, null, null,
+            function(){
+                this.sprite.runAction(
+                    cc.moveTo(2, cc.p(800,500)));
+            }, this);
+        act3.x = 220;
+        act3.y = 600;
 
-        var menu = new cc.Menu(act1, act2);
+        var act4 = new cc.MenuItemImage(
+            res.btn_png, null, null,
+            function(){
+                this.sprite.runAction(
+                    cc.moveBy(1, cc.p(-40,-40)));
+            }, this);
+        act4.x = 280;
+        act4.y = 600;
+
+        var act5 = new cc.MenuItemImage(
+            res.btn_png, null, null,
+            function(){
+                var a1 = cc.moveBy(0.5, cc.p(size.width/2,0));
+                var a2 = cc.moveBy(0.5, cc.p(0,size.height/2));
+                var a3 = cc.moveBy(0.5, cc.p(-size.width/2,0));
+                var a4 = cc.moveBy(0.5, cc.p(0,-size.height/2));
+                var as = [];
+                as.push(a1); as.push(a2);as.push(a3);as.push(a4);
+                var seq = new cc.Sequence(as);
+                this.sprite.runAction(seq);
+
+            }, this);
+        act5.x = 340;
+        act5.y = 600;
+
+        var menu = new cc.Menu(act1, act2, act3, act4, act5);
         menu.x = 0; menu.y = 0;
         this.addChild(menu);
 
