@@ -3,6 +3,7 @@ var res = {
     bullet_png : "res/bullet.png",
     b2_png : "res/b2.png",
     brick_png : "res/brick.png",
+    ball_png : "res/ball.png",
 };
 
 var g_resources = [];
