@@ -94,6 +94,7 @@ var Test3Scene = cc.Scene.extend({
         this._super();
         var layer = new Test3Layer();
         this.addChild(layer);
+        this.focused = true;
     }
 });
 
