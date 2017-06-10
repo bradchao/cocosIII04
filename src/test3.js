@@ -2,6 +2,8 @@
 var Test3Layer = cc.Layer.extend({
     bg:null,
     isRight: true,
+    man : null,
+    manFrams: null,
     ctor:function () {
         this._super();
         var size = cc.winSize;
@@ -11,8 +13,24 @@ var Test3Layer = cc.Layer.extend({
             x : this.bg.width / 2,
             y : size.height / 2
         });
-        this.bg.scaleY = 2;
+        this.bg.scaleY = 2
         this.addChild(this.bg);
+
+        var cache = cc.spriteFrameCache;
+        cache.addSpriteFrames(res.man_plist, res.man_png);
+        var img37 = cache.getSpriteFrame("image37.png");
+        var img38 = cache.getSpriteFrame("image38.png");
+        var img39 = cache.getSpriteFrame("image39.png");
+        var img40 = cache.getSpriteFrame("image40.png");
+        this.manFrams = [img37, img38, img39, img38, img40, img38];
+
+        this.man = new cc.Sprite(this.manFrams[0]);
+        this.man.attr({
+            x: size.width /2,
+            y: size.height / 2 + this.man.width / 2
+        });
+        this.addChild(this.man);
+        this.man.runAction(cc.flipX(true));
 
         this.myKeyListener(this);
 
