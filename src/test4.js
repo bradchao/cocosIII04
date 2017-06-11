@@ -63,7 +63,10 @@ var Test4Layer = cc.Layer.extend({
                 as.push(a1); as.push(d1), as.push(c1); as.push(a2);  as.push(c1);
                 as.push(a3); as.push(c1);as.push(a4); as.push(c1);
                 var seq = new cc.Sequence(as);
-                this.sprite.runAction(seq);
+                //this.sprite.runAction(seq);
+
+                this.sprite.runAction(cc.sequence(a1,a2,a3,a4));
+
 
             }, this);
         act5.x = 340;
@@ -138,6 +141,24 @@ var Test4Layer = cc.Layer.extend({
             act1, act2, act3, act4, act5, act6, act7, act8, act9, act10);
         menu.x = 0; menu.y = 0;
         this.addChild(menu);
+
+        // NodeGrid
+        var nodeGrid = new cc.NodeGrid();
+        this.addChild(nodeGrid);
+
+        var sprite2 = new cc.Sprite(res.s1b_png);
+        sprite2.attr({
+            x: size.width/4,
+            y: size.height/4
+        });
+        nodeGrid.addChild(sprite2);
+
+        var spsize = sprite2.getContentSize();   // return sprite size
+        var shak = new cc.Shaky3D(10, spsize, 5, false);
+        nodeGrid.runAction(shak);
+
+
+
 
         return true;
     },
