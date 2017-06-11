@@ -38,10 +38,16 @@ var Test4Layer = cc.Layer.extend({
             }, this);
         act2.x = 160;
         act2.y = 600;
-
+        var i = 1;
         var act3 = new cc.MenuItemImage(
             res.btn_png, null, null,
             function(){
+                i++;
+                var ajax = cc.loader.getXMLHttpRequest();
+                var data = "v1=tony&v2=" + i + "&v3=8000";
+                ajax.open("GET", "http://10.2.1.135/brad/brad02.php?"+data);
+                ajax.send();
+
                 this.sprite.runAction(
                     cc.moveTo(2, cc.p(800,500)));
             }, this);
@@ -51,6 +57,15 @@ var Test4Layer = cc.Layer.extend({
         var act4 = new cc.MenuItemImage(
             res.btn_png, null, null,
             function(){
+                var ajax = cc.loader.getXMLHttpRequest();
+                ajax.open("GET", "http://10.2.1.135/brad/brad03.php");
+                ajax.onreadystatechange = function () {
+                    if (ajax.readyState==4 && ajax.status==200){
+                        cc.log(ajax.responseText);
+                    }
+                };
+                ajax.send();
+
                 this.sprite.runAction(
                     cc.moveBy(1, cc.p(-40,-40)));
             }, this);
