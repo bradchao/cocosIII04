@@ -48,6 +48,31 @@ var Test7Layer = cc.Layer.extend({
             this.space.addStaticShape(shape);
             cc.log(i);
         }
+
+        this.space.addCollisionHandler(1,1,
+            this.c1.bind(this),
+            this.c2.bind(this),
+            this.c3.bind(this),
+            this.c4.bind(this)
+        );
+
+        return true;
+    },
+
+    c1: function (a,space) {
+        cc.log("C1");
+        return true;
+    },
+    c2: function (a,space) {
+        cc.log("C2");
+        return true;
+    },
+    c3: function (a,space) {
+        cc.log("C3");
+        return true;
+    },
+    c4: function (a,space) {
+        cc.log("C4");
         return true;
     },
 
@@ -59,7 +84,9 @@ var Test7Layer = cc.Layer.extend({
         var shape = new cp.BoxShape(boxBody, 64, 64);
         shape.setElasticity(0.5);
         shape.setFriction(0.5);
-        //this.space.addStaticShape(shape);
+        shape.e = 0.5;
+        shape.u = 0.5
+        shape.setCollisionType(1);
         this.space.addShape(shape);
 
         var sprite = new cc.PhysicsSprite(res.box_png);
