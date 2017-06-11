@@ -59,7 +59,8 @@ var Test7Layer = cc.Layer.extend({
         var shape = new cp.BoxShape(boxBody, 64, 64);
         shape.setElasticity(0.5);
         shape.setFriction(0.5);
-        this.space.addStaticShape(shape);
+        //this.space.addStaticShape(shape);
+        this.space.addShape(shape);
 
         var sprite = new cc.PhysicsSprite(res.box_png);
         sprite.setBody(boxBody);
