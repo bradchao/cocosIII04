@@ -58,8 +58,9 @@ var Test4Layer = cc.Layer.extend({
                 var a3 = cc.moveBy(0.5, cc.p(-size.width/2,0));
                 var a4 = cc.moveBy(0.5, cc.p(0,-size.height/2));
                 var c1 = new cc.CallFunc(this.cb1, this);
+                var d1 = cc.delayTime(2);
                 var as = [];
-                as.push(a1); as.push(c1); as.push(a2);  as.push(c1);
+                as.push(a1); as.push(d1), as.push(c1); as.push(a2);  as.push(c1);
                 as.push(a3); as.push(c1);as.push(a4); as.push(c1);
                 var seq = new cc.Sequence(as);
                 this.sprite.runAction(seq);
@@ -68,7 +69,52 @@ var Test4Layer = cc.Layer.extend({
         act5.x = 340;
         act5.y = 600;
 
-        var menu = new cc.Menu(act1, act2, act3, act4, act5);
+        var act6 = new cc.MenuItemImage(
+            res.btn_png, null, null,
+            function(){
+                this.sprite.runAction(
+                    cc.scaleBy(2, 0.5, 0.5)
+                );
+                this.sprite.runAction(
+                    cc.fadeOut(2)
+                );
+
+            }, this);
+        act6.x = 400;
+        act6.y = 600;
+
+        var act7 = new cc.MenuItemImage(
+            res.btn_png, null, null,
+            function(){
+                this.sprite.runAction(
+                    cc.scaleBy(2, 2, 2)
+                );
+                this.sprite.runAction(
+                    cc.fadeIn(2)
+                );
+                this.sprite.runAction(
+                    cc.rotateBy(2, 360)
+                );
+                this.sprite.runAction(
+                    cc.blink(2, 10)
+                );
+
+            }, this);
+        act7.x = 460;
+        act7.y = 600;
+
+        var act8 = new cc.MenuItemImage(
+            res.btn_png, null, null,
+            function(){
+                this.sprite.runAction(
+                    cc.jumpTo(1, cc.p(200,200), 250, 2)
+                );
+            }, this);
+        act8.x = 520;
+        act8.y = 600;
+
+        var menu = new cc.Menu(
+            act1, act2, act3, act4, act5, act6, act7, act8);
         menu.x = 0; menu.y = 0;
         this.addChild(menu);
 
