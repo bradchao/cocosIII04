@@ -1,13 +1,24 @@
 
 var Test7Layer = cc.Layer.extend({
     sprite:null,
-    space:null,
+    //  space:null,
     ctor:function () {
         this._super();
         var size = cc.winSize;
 
+        cc.eventManager.addListener({
+            event: cc.EventListener.MOUSE,
+            onMouseDown: function (event) {
+                var target = event.getCurrentTarget();
+                var location = event.getLocation();
+                target.addBox(location);
+                return false;
+            }
+        }, this);
 
         this.initPhy();
+        this.scheduleUpdate();
+
         return true;
     },
 
@@ -15,8 +26,10 @@ var Test7Layer = cc.Layer.extend({
     initPhy : function () {
         var size = cc.winSize;
 
+        //cc.log(size.width);
+
         // 空間
-        this.space = new cc.Space();
+        this.space = new cp.Space();
         this.space.gravity = cp.v(0, -100);
         var body = this.space.staticBody;
 
@@ -33,8 +46,9 @@ var Test7Layer = cc.Layer.extend({
             shape.setElasticity(1);
             shape.setFriction(1);
             this.space.addStaticShape(shape);
+            cc.log(i);
         }
-
+        return true;
     },
 
     addBox: function (p) {
@@ -42,7 +56,7 @@ var Test7Layer = cc.Layer.extend({
         boxBody.setPos(p);
         this.space.addBody(boxBody);
 
-        var shape = new cc.BoxShape(boxBody, 64, 64);
+        var shape = new cp.BoxShape(boxBody, 64, 64);
         shape.setElasticity(0.5);
         shape.setFriction(0.5);
         this.space.addStaticShape(shape);
@@ -52,6 +66,10 @@ var Test7Layer = cc.Layer.extend({
         sprite.setPosition(cc.p(p.x, p.y));
         this.addChild(sprite);
 
+    },
+
+    update : function (dt) {
+        this.space.step(0.04);
     }
 
 
