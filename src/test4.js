@@ -113,8 +113,29 @@ var Test4Layer = cc.Layer.extend({
         act8.x = 520;
         act8.y = 600;
 
+        var act9 = new cc.MenuItemImage(
+            res.btn_png, null, null,
+            function(){
+                var move = cc.moveBy(2, cc.p(800, 100));
+                var easeIn = new cc.EaseIn(move, 40);
+                this.sprite.runAction(easeIn);
+            }, this);
+        act9.x = 580;
+        act9.y = 600;
+
+        var act10 = new cc.MenuItemImage(
+            res.btn_png, null, null,
+            function(){
+                var move = cc.moveBy(2, cc.p(800, 100));
+                this.sprite.runAction(move);
+                //var speed = new cc.Speed(move, 4);
+                //this.sprite.runAction(speed);
+            }, this);
+        act10.x = 640;
+        act10.y = 600;
+
         var menu = new cc.Menu(
-            act1, act2, act3, act4, act5, act6, act7, act8);
+            act1, act2, act3, act4, act5, act6, act7, act8, act9, act10);
         menu.x = 0; menu.y = 0;
         this.addChild(menu);
 
