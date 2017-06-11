@@ -12,6 +12,7 @@ var res = {
     s1b_png : "res/s1_0025.png",
     btn_png : "res/button.png",
     box_png : "res/box.png",
+    sound : "res/sound.wav",
 };
 
 var g_resources = [];

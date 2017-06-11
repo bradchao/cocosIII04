@@ -6,6 +6,8 @@ var Test7Layer = cc.Layer.extend({
         this._super();
         var size = cc.winSize;
 
+
+
         cc.eventManager.addListener({
             event: cc.EventListener.MOUSE,
             onMouseDown: function (event) {
@@ -61,6 +63,8 @@ var Test7Layer = cc.Layer.extend({
 
     c1: function (a,space) {
         cc.log("C1");
+        cc.audioEngine.playMusic(res.sound, false);
+        //cc.audioEngine.stopMusic();
         return true;
     },
     c2: function (a,space) {

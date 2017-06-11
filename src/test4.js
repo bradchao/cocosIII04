@@ -3,10 +3,13 @@ var Test4Layer = cc.Layer.extend({
     sprite:null,
     isFlipX : true,
     isFlipY : true,
+    ls : null,
     ctor:function () {
         this._super();
         var size = cc.winSize;
 
+        this.ls = cc.sys.localStorage;
+        
         this.sprite = new cc.Sprite(res.s1b_png);
         this.sprite.attr({
             x: size.width/2,
@@ -17,6 +20,8 @@ var Test4Layer = cc.Layer.extend({
         var act1 = new cc.MenuItemImage(
             res.btn_png, null, null,
             function(){
+                this.ls.setItem("name", "Brad");   
+                
                 this.isFlipX = !this.isFlipX;
                 this.sprite.runAction(cc.flipX(this.isFlipX));
             }, this);
@@ -26,6 +31,8 @@ var Test4Layer = cc.Layer.extend({
         var act2 = new cc.MenuItemImage(
             res.btn_png, null, null,
             function(){
+                cc.log("name = " + this.ls.getItem("name"));
+                
                 this.isFlipY = !this.isFlipY;
                 this.sprite.runAction(cc.flipY(this.isFlipY));
             }, this);
